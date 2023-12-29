@@ -20,16 +20,14 @@ top100FromSP500 = ['AAPL','MSFT','AMZN','NVDA','GOOGL','META','TSLA','GOOG','BRK
                    'SCHW','CVS','AMT','SYK','GILD','ADI','LMT','C','MDLZ','ETN','ADP','MU','BX','REGN','MMC','PANW','PGR',
                    'CB']
 
-top100FromSP500 = ['AAPL','MSFT','AMZN']
-top100FromSP500 = ['MSFT']
+allTkrs = tsx60 + top100FromSP500
 
 flagCheckCurrentLow = False
 
 csv_file_path = '../data/'
-stocks_to_test = top100FromSP500
+stocks_to_test = allTkrs
 start_date = datetime(2018,1,1)
 holding_period_days = [5, 10, 15, 20]  # Adjust the holding period as needed
-holding_period_days = [5]  # Adjust the holding period as needed
 minPeriod = 252 # in days, 252 business days is approx a year
 startInv = 10000
 stopLossFlag = True
@@ -57,6 +55,7 @@ else: # Run backtest
                 summaryDF = summaryDF._append(stats, ignore_index=True)
 
     fn = '../results/' + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + '_Summary.xlsx'
+    summaryDF.sort_values('AnnReturn', ascending=False, inplace=True)
     summaryDF.to_excel(fn)
 
 

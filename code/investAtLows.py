@@ -53,6 +53,7 @@ def calculate_summary_stats(trades, startInv):
 
     summaryStats['NumWinTrades'] = num_winning_trades
     summaryStats['NumLoseTrades'] = num_losing_trades
+    summaryStats['TotalTrades'] = num_winning_trades + num_losing_trades
 
     # For this strategy which has long periods of no trades per ticker when the price has already
     # bounced off of the low, simple cumulative return is a better proxy rather than geometric return
