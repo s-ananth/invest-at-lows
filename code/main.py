@@ -22,7 +22,7 @@ top100FromSP500 = ['AAPL','MSFT','AMZN','NVDA','GOOGL','META','TSLA','GOOG','BRK
 
 allTkrs = tsx60 + top100FromSP500
 
-flagCheckCurrentLow = False
+flagCheckCurrentLow = True
 
 csv_file_path = '../data/'
 stocks_to_test = allTkrs

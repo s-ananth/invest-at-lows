@@ -30,9 +30,13 @@ def tickers_close_to_low(csv_file_path, start_date, tkrList,
     print('The following tickers have breached period lows')
     print(breachedList)
     fn = '../results/' + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + '_Stocks_Near_Lows.xlsx'
-    res = pd.DataFrame({'Not Yet Breached': notYetBreachedList, 'Breached': breachedList}, index=[0])
-    res.to_excel(fn)
-    print('Lists saved to ' + fn)
+    if notYetBreachedList or breachedList:
+        data = {'Not Yet Breached': notYetBreachedList, 'Breached': breachedList}
+        max_length = max(len(v) for v in data.values())
+        data_filled = {key: value + [float('nan')] * (max_length - len(value)) for key, value in data.items()}
+        res = pd.DataFrame(data_filled)
+        res.to_excel(fn)
+        print('Lists saved to ' + fn)
 
 def calculate_summary_stats(trades, startInv):
 
