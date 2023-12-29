@@ -1,0 +1,102 @@
+\documentclass{article}
+\setlength{\parindent}{0pt}
+\setlength{\parindent}{0pt}
+
+% Packages
+\usepackage[utf8]{inputenc} % Input encoding (UTF-8 recommended)
+\usepackage[T1]{fontenc}    % Font encoding
+\usepackage[english]{babel} % Language
+\usepackage{titlesec}       % Customizing section titles
+\usepackage{parskip}
+
+% Title and Author
+\title{AI Based FX Strategies}
+\author{}
+\date{\today}
+
+\begin{quote}
+	\small
+	This research and its associated findings are conducted independently and are unrelated to the authors professional responsibilities or the disclosure of any private or confidential information. The views, opinions, and results presented in this research solely reflect the authors personal interests and do not represent the stance or endorsement of my employer, organization, or any other entity with which the authors may be affiliated.
+	
+	The primary purpose of this research is to contribute to the broader academic or intellectual community and to further the authors own understanding and knowledge in the specified area of research.
+	
+	Please be aware that any conclusions, recommendations, or implications drawn from this research should be evaluated critically, and this research should not be used as the sole basis for making financial decisions or taking financial actions without consulting relevant experts or conducting additional research.
+
+\end{quote}
+
+% Document Body
+\begin{document}
+	
+	\maketitle
+		
+	\newpage
+	\section{Introduction}
+	The objective of this research project is build AI based prediction models in the FX Spot market at a medium frequency. Predictive models are considered on the following time frames: M5, M15, M30, H1, H4, and D. The models do not incorporate tick data and are not candidates for High Frequency Trading (HFT).
+	
+		\subsection{FX Spot Market Background}
+		TBD
+	
+	\newpage
+	\section{Data} \label{sec:dataIntro}
+	The data is candle based data for the following frequencies:
+	\begin{itemize}
+		\item M5 - Open, High, Low, and Close captured for each 5 minute block
+		\item M15 - Open, High, Low, and Close captured for each 15 minute block
+		\item M30 - Open, High, Low, and Close captured for each 30 minute block
+		\item H1 - Open, High, Low, and Close captured for each 1 hour block
+		\item H4 - Open, High, Low, and Close captured for each 4 hour block
+		\item D - Open, High, Low, and Close captured for each daily block
+	\end{itemize}
+	
+	The above candle based data set forms the raw data. Using feature engineering and transformations common in Technical Analysis research, other explanatory variables are derived and used in the final data set.
+	
+	The following checks and adjustments were made to the raw data to ensure any errors in the data are addressed properly. 
+	
+	\textbf{Day Rollover: }
+	FX spot trading is an almost 24 hour traded market. It runs from approximately Sunday afternoon (EST) to Friday afternoon (EST). Since the end of trading to start of trading is not continuous, the features and target have to take this into account. Only continuous periods of for the target variable are considered. Any periods with missing data are omitted from the model training data set. 
+	
+	\section{Features}
+		
+		\subsection{Economic Features} \label{sec:econFeat}
+		We refer to economic features that are basic transformations of the raw data in Section \ref{sec:dataIntro} and features derived from research in technical analysis. These features are not considered as engineered features as they are basic transformations such as differences, averages, and ratios on directly observable economic indicators.
+		
+		The target variable always represents an $n$ period move in the future. The $n$ period move is represented as 
+		
+		\subsection{Feature Engineering}
+		This section discusses feature engineering of the economic features of Section \ref{sec:econFeat}.
+
+	\newpage
+	\section{Model}
+	
+		\subsection{Structure}
+		The structure of the model is to use features from $m$ periods in the past to predict a single direction move over $n$ periods in the future.
+		
+		The code is in Python and consists of the following classes to separate out the functions:
+		
+		\begin{itemize}
+			\item $FXData$ class to handle gather of data and constructing features and target variables
+			\item $FXModel$ class to handle AI model training
+			\item $FXPrecition$ class to run a simulated trading strategy
+		\end{itemize}
+		
+		\subsection{AI Architecture}
+	
+		
+	\newpage
+	\section{Results}
+	TBD
+	
+	\newpage
+	\section{Discussion}
+	TBD
+	
+	\newpage
+	\section{Conclusion}
+	TBD
+	
+	\newpage
+	% Bibliography (if needed)
+	%\bibliographystyle{plain}
+	%\bibliography{references}
+	
+\end{document}
